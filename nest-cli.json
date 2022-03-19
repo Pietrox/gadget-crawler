@@ -1,0 +1,57 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/crawler/src",
+  "monorepo": true,
+  "root": "apps/crawler",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/crawler/tsconfig.app.json"
+  },
+  "projects": {
+    "crawler": {
+      "type": "application",
+      "root": "apps/crawler",
+      "entryFile": "main",
+      "sourceRoot": "apps/crawler/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/crawler/tsconfig.app.json"
+      }
+    },
+    "api": {
+      "type": "application",
+      "root": "apps/api",
+      "entryFile": "main",
+      "sourceRoot": "apps/api/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/api/tsconfig.app.json"
+      }
+    },
+    "datahub": {
+      "type": "application",
+      "root": "apps/datahub",
+      "entryFile": "main",
+      "sourceRoot": "apps/datahub/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/datahub/tsconfig.app.json"
+      }
+    },
+    "interfaces": {
+      "type": "library",
+      "root": "libs/interfaces",
+      "entryFile": "index",
+      "sourceRoot": "libs/interfaces/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/interfaces/tsconfig.lib.json"
+      }
+    },
+    "dto": {
+      "type": "library",
+      "root": "libs/dto",
+      "entryFile": "index",
+      "sourceRoot": "libs/dto/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/dto/tsconfig.lib.json"
+      }
+    }
+  }
+}
