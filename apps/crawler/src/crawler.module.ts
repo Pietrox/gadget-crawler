@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { DatahubController } from './datahub.controller';
-import { DatahubService } from './datahub.service';
+import { CrawlerController } from './crawler.controller';
+import { CrawlerService } from './crawler.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
@@ -25,7 +25,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
       },
     ]),
   ],
-  controllers: [DatahubController],
-  providers: [DatahubService],
+  controllers: [CrawlerController],
+  providers: [CrawlerService],
 })
-export class DatahubModule {}
+export class CrawlerModule {}

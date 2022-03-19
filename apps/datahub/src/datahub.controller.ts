@@ -1,12 +1,15 @@
 import { Controller, Get } from '@nestjs/common';
 import { DatahubService } from './datahub.service';
+import {MessagePattern} from "@nestjs/microservices";
+import {CommandEnum} from "@app/enums";
 
 @Controller()
 export class DatahubController {
   constructor(private readonly datahubService: DatahubService) {}
 
   @Get()
-  getHello(): string {
-    return this.datahubService.getHello();
+  @MessagePattern({ cmd: CommandEnum.datahubHealth })
+  async getDatahubHealth(): Promise<boolean> {
+    return this.datahubService.getHealth();
   }
 }

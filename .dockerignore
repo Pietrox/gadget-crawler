@@ -1,0 +1,6 @@
+k8s/
+node_modules/
+Tiltfile
+.gitignore
+.env.sample
+.prettierrc

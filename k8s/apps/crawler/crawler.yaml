@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crawler
+spec:
+  selector:
+    matchLabels:
+      app: crawler
+  template:
+    metadata:
+      labels:
+        app: crawler
+    spec:
+      containers:
+        - name: crawler
+          image: crawler
+          ports:
+            - containerPort: 3030
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+            requests:
+              cpu: 100m
+              memory: 200m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: crawler
+spec:
+  selector:
+    app: crawler
+  ports:
+    - name: http
+      port: 3030
