@@ -16,13 +16,6 @@ spec:
           image: api
           ports:
             - containerPort: 3000
-          resources:
-            limits:
-              cpu: 1000m
-              memory: 1Gi
-            requests:
-              cpu: 100m
-              memory: 200m
 ---
 apiVersion: v1
 kind: Service

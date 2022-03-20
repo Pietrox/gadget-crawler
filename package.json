@@ -22,15 +22,24 @@
     "namespace": "kubectl create -f k8s/namespace.json"
   },
   "dependencies": {
+    "@nestjs/bull": "^0.5.3",
     "@nestjs/common": "^8.0.0",
     "@nestjs/config": "^2.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/microservices": "^8.4.1",
+    "@nestjs/mongoose": "^9.0.3",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/swagger": "^5.2.0",
+    "@types/puppeteer": "^5.4.5",
+    "bull": "^4.8.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
+    "dotenv": "^16.0.0",
+    "lodash": "^4.17.21",
+    "migrate-mongo": "^8.2.3",
+    "mongoose": "^6.2.7",
     "puppeteer": "^13.5.1",
+    "puppeteer-extra-plugin-recaptcha": "^3.5.0",
     "redis": "^3.1.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
@@ -42,6 +51,7 @@
     "@nestjs/cli": "^8.0.0",
     "@nestjs/schematics": "^8.0.0",
     "@nestjs/testing": "^8.0.0",
+    "@types/bull": "^3.15.8",
     "@types/express": "^4.17.13",
     "@types/jest": "27.0.2",
     "@types/node": "^16.0.0",
@@ -85,7 +95,10 @@
       "^@app/interfaces(|/.*)$": "<rootDir>/libs/interfaces/src/$1",
       "^@app/dto(|/.*)$": "<rootDir>/libs/dto/src/$1",
       "^@app/config(|/.*)$": "<rootDir>/libs/config/src/$1",
-      "^@app/enums(|/.*)$": "<rootDir>/libs/enums/src/$1"
+      "^@app/enums(|/.*)$": "<rootDir>/libs/enums/src/$1",
+      "^@app/factories(|/.*)$": "<rootDir>/libs/factories/src/$1",
+      "^@app/schemas(|/.*)$": "<rootDir>/libs/schemas/src/$1",
+      "^@app/helpers(|/.*)$": "<rootDir>/libs/helpers/src/$1"
     }
   }
 }

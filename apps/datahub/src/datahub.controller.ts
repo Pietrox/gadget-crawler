@@ -5,11 +5,12 @@ import {CommandEnum} from "@app/enums";
 
 @Controller()
 export class DatahubController {
-  constructor(private readonly datahubService: DatahubService) {}
+    constructor(private readonly datahubService: DatahubService) {}
 
-  @Get()
-  @MessagePattern({ cmd: CommandEnum.datahubHealth })
-  async getDatahubHealth(): Promise<boolean> {
-    return this.datahubService.getHealth();
-  }
+    @Get()
+    @MessagePattern({ cmd: CommandEnum.datahubHealth })
+    async getDatahubHealth(): Promise<boolean> {
+        console.log('weszlo')
+        return this.datahubService.getHealth();
+    }
 }

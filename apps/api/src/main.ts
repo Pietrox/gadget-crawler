@@ -1,28 +1,20 @@
 import { NestFactory } from '@nestjs/core';
 import { ApiModule } from './api.module';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { MicroserviceOptions } from '@nestjs/microservices';
 import { ConfigService } from '@nestjs/config';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { redisFactory } from '@app/factories';
 
 async function bootstrap() {
   const app = await NestFactory.create(ApiModule);
   const configService = await app.get<ConfigService>(ConfigService);
 
-  await app.connectMicroservice<MicroserviceOptions>({
-    transport: Transport.REDIS,
-    options: {
-      host: configService.get('REDIS_HOST'),
-      port: configService.get('REDIS_PORT'),
-      password: configService.get('REDIS_PASSWORD')
-    },
-  });
-
+  await app.connectMicroservice<MicroserviceOptions>(redisFactory(configService) as MicroserviceOptions);
   const swaggerOptions = new DocumentBuilder()
     .setTitle('API Documentation')
     .setDescription('Below is a list of documented endpoints for api service')
     .build();
-
   const swaggerDocument = SwaggerModule.createDocument(app, swaggerOptions);
   SwaggerModule.setup('/docs/', app, swaggerDocument, {
     explorer: true,

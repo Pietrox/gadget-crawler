@@ -1,7 +1,5 @@
 load('ext://namespace', 'namespace_inject')
 load('ext://restart_process', 'docker_build_with_restart')
-load('ext://dotenv', 'dotenv')
-dotenv(fn='.env')
 
 #k8s
 k8s_yaml(namespace_inject(read_file('./k8s/apps/api/api.yaml'), 'gadget-crawler'))
@@ -19,7 +17,7 @@ k8s_resource('datahub', resource_deps=['redis','mongo'])
 
 #Dependencies
 k8s_resource('mongo', port_forwards=[27017])
-k8s_resource('redis', port_forwards=[6379])
+k8s_resource('redis', port_forwards=[6380])
 
 docker_build('base',
   '.',

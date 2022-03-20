@@ -70,6 +70,33 @@
       "compilerOptions": {
         "tsConfigPath": "libs/enums/tsconfig.lib.json"
       }
+    },
+    "factories": {
+      "type": "library",
+      "root": "libs/factories",
+      "entryFile": "index",
+      "sourceRoot": "libs/factories/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/factories/tsconfig.lib.json"
+      }
+    },
+    "schemas": {
+      "type": "library",
+      "root": "libs/schemas",
+      "entryFile": "index",
+      "sourceRoot": "libs/schemas/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/schemas/tsconfig.lib.json"
+      }
+    },
+    "helpers": {
+      "type": "library",
+      "root": "libs/helpers",
+      "entryFile": "index",
+      "sourceRoot": "libs/helpers/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/helpers/tsconfig.lib.json"
+      }
     }
   }
 }

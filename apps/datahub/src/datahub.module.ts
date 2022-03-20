@@ -1,27 +1,25 @@
 import { Module } from '@nestjs/common';
-import { DatahubController } from './datahub.controller';
 import { DatahubService } from './datahub.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { ClientsModule, Transport } from '@nestjs/microservices';
+import { ClientsModule } from '@nestjs/microservices';
+import {mongoFactory, redisFactory} from '@app/factories';
+import {DatahubController} from "./datahub.controller";
+import {MongooseModule} from "@nestjs/mongoose";
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      envFilePath: '/app/.env',
-    }),
+    ConfigModule.forRoot(),
+      MongooseModule.forRootAsync({
+        imports: [ConfigModule],
+        inject: [ConfigService],
+        useFactory: mongoFactory
+      }),
     ClientsModule.registerAsync([
       {
         imports: [ConfigModule],
         inject: [ConfigService],
         name: 'REDIS_SERVICE',
-        useFactory: async (configService: ConfigService) => ({
-          transport: Transport.REDIS,
-          options: {
-            host: configService.get('REDIS_HOST'),
-            port: configService.get('REDIS_PORT'),
-            password: configService.get('REDIS_PASSWORD')
-          },
-        }),
+        useFactory: redisFactory,
       },
     ]),
   ],

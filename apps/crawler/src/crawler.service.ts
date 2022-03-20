@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
-
 @Injectable()
 export class CrawlerService {
-  async getHealth(): Promise<boolean> {
+  getHealth(): boolean {
     return true;
   }
 }

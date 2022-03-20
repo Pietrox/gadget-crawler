@@ -1,31 +1,38 @@
 import { Module } from '@nestjs/common';
-import { CrawlerController } from './crawler.controller';
 import { CrawlerService } from './crawler.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { ClientsModule, Transport } from '@nestjs/microservices';
+import { ClientsModule } from '@nestjs/microservices';
+import { BullModule } from '@nestjs/bull';
+import { bullFactory, mongoFactory, redisFactory } from '@app/factories';
+import { QueueEnum } from '@app/enums';
+import { AsusConsumer } from './consumers/asus.consumer';
+import { CrawlerController } from './crawler.controller';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      envFilePath: '/app/.env',
+    ConfigModule.forRoot(),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: mongoFactory,
     }),
     ClientsModule.registerAsync([
       {
         imports: [ConfigModule],
         inject: [ConfigService],
         name: 'REDIS_SERVICE',
-        useFactory: async (configService: ConfigService) => ({
-          transport: Transport.REDIS,
-          options: {
-            host: configService.get('REDIS_HOST'),
-            port: configService.get('REDIS_PORT'),
-            password: configService.get('REDIS_PASSWORD')
-          },
-        }),
+        useFactory: redisFactory,
       },
     ]),
+    BullModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: bullFactory,
+    }),
+    BullModule.registerQueue({ name: QueueEnum.crawlAsus }, { name: QueueEnum.crawlSamsung }, { name: QueueEnum.crawlLg }),
   ],
   controllers: [CrawlerController],
-  providers: [CrawlerService],
+  providers: [CrawlerService, AsusConsumer],
 })
 export class CrawlerModule {}
