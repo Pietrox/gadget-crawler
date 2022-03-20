@@ -1,5 +1,8 @@
 export enum QueueEnum {
-    crawlAsus = 'crawlAsus',
-    crawlSamsung = 'crawlSamsung',
-    crawlLg = 'crawlLg'
+  crawlAsus = 'crawlAsus',
+  crawlAsusPages = 'crawlAsusPages',
+  crawlSamsung = 'crawlSamsung',
+  crawlSamsungPages = 'crawlSamsungPages',
+  crawlLg = 'crawlLg',
+  crawlLgPages = 'crawlLgPages',
 }

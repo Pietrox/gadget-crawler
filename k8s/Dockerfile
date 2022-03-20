@@ -4,6 +4,7 @@ WORKDIR /app
 
 ADD . .
 
+RUN export $(cat .env)
 RUN npm install --unsafe-perm --no-audit --prefer-offline
 RUN npm install i -g @nestjs/cli
 

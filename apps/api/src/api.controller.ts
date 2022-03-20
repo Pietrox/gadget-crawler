@@ -1,8 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { ApiService } from './api.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Observable } from 'rxjs';
-import { CrawlDto } from '../../../libs/dto/crawl.dto';
 
 @Controller()
 export class ApiController {
@@ -32,7 +31,7 @@ export class ApiController {
   @Post('gather-data')
   @ApiTags('Crawl')
   @ApiOperation({ description: 'Initiate crawling' })
-  async startCrawling(@Body() dto: CrawlDto): Promise<boolean> {
-    return this.apiService.startCrawling(dto);
+  async startCrawling(): Promise<boolean> {
+    return this.apiService.startCrawling();
   }
 }

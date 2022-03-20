@@ -18,48 +18,20 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@app/interfaces": [
-        "libs/interfaces/src"
-      ],
-      "@app/interfaces/*": [
-        "libs/interfaces/src/*"
-      ],
-      "@app/dto": [
-        "libs/dto/src"
-      ],
-      "@app/dto/*": [
-        "libs/dto/src/*"
-      ],
-      "@app/config": [
-        "libs/config/src"
-      ],
-      "@app/config/*": [
-        "libs/config/src/*"
-      ],
-      "@app/enums": [
-        "libs/enums/src"
-      ],
-      "@app/enums/*": [
-        "libs/enums/src/*"
-      ],
-      "@app/factories": [
-        "libs/factories/src"
-      ],
-      "@app/factories/*": [
-        "libs/factories/src/*"
-      ],
-      "@app/schemas": [
-        "libs/schemas/src"
-      ],
-      "@app/schemas/*": [
-        "libs/schemas/src/*"
-      ],
-      "@app/helpers": [
-        "libs/helpers/src"
-      ],
-      "@app/helpers/*": [
-        "libs/helpers/src/*"
-      ]
+      "@app/interfaces": ["libs/interfaces/src"],
+      "@app/interfaces/*": ["libs/interfaces/src/*"],
+      "@app/dto": ["libs/dto/src"],
+      "@app/dto/*": ["libs/dto/src/*"],
+      "@app/config": ["libs/config/src"],
+      "@app/config/*": ["libs/config/src/*"],
+      "@app/enums": ["libs/enums/src"],
+      "@app/enums/*": ["libs/enums/src/*"],
+      "@app/factories": ["libs/factories/src"],
+      "@app/factories/*": ["libs/factories/src/*"],
+      "@app/schemas": ["libs/schemas/src"],
+      "@app/schemas/*": ["libs/schemas/src/*"],
+      "@app/helpers": ["libs/helpers/src"],
+      "@app/helpers/*": ["libs/helpers/src/*"]
     }
-  }
+  },
 }

@@ -22,6 +22,7 @@
     "namespace": "kubectl create -f k8s/namespace.json"
   },
   "dependencies": {
+    "@nestjs/axios": "^0.0.7",
     "@nestjs/bull": "^0.5.3",
     "@nestjs/common": "^8.0.0",
     "@nestjs/config": "^2.0.0",
@@ -30,14 +31,15 @@
     "@nestjs/mongoose": "^9.0.3",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/swagger": "^5.2.0",
-    "@types/puppeteer": "^5.4.5",
     "bull": "^4.8.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "dotenv": "^16.0.0",
+    "fast-xml-parser": "^4.0.7",
     "lodash": "^4.17.21",
     "migrate-mongo": "^8.2.3",
     "mongoose": "^6.2.7",
+    "nest-puppeteer": "^1.1.1",
     "puppeteer": "^13.5.1",
     "puppeteer-extra-plugin-recaptcha": "^3.5.0",
     "redis": "^3.1.2",
@@ -45,7 +47,8 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "swagger-ui-express": "^4.3.0",
-    "user-agents": "^1.0.960"
+    "user-agents": "^1.0.960",
+    "uuid-by-string": "^3.0.6"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",
@@ -55,6 +58,7 @@
     "@types/express": "^4.17.13",
     "@types/jest": "27.0.2",
     "@types/node": "^16.0.0",
+    "@types/puppeteer": "^5.4.5",
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",

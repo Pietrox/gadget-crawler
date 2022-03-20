@@ -16,7 +16,9 @@ export const bullFactory = (configService: ConfigService): BullModuleOptions => 
 
 export const bullOptionsFactory = (): JobOptions => ({
   removeOnComplete: true,
-  removeOnFail: true,
+  removeOnFail: false,
   attempts: 10,
-  backoff: { type: 'exponential', delay: 10000 },
+  backoff: 1000,
+  delay: 2000
 });
+

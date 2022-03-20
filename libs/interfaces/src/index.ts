@@ -1,2 +1,3 @@
-export * from './interfaces.module';
-export * from './interfaces.service';
+export * from './utils.interface';
+export * from './spec-list.interface';
+export * from './loose-object.interface'

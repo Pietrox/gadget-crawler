@@ -8,10 +8,17 @@ import { QueueEnum } from '@app/enums';
 import { AsusConsumer } from './consumers/asus.consumer';
 import { CrawlerController } from './crawler.controller';
 import { MongooseModule } from '@nestjs/mongoose';
+import { AsusProducer } from './producers/asus.producer';
+import { HttpModule } from '@nestjs/axios';
+import { AsusPagesConsumer } from './consumers/asus.pages..consumer';
+import { SamsungConsumer } from './consumers/samsung.consumer';
+import { SamsungPagesConsumer } from './consumers/samsung.pages..consumer';
+import { SamsungProducer } from './producers/samsung.producer';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    HttpModule,
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -30,9 +37,15 @@ import { MongooseModule } from '@nestjs/mongoose';
       inject: [ConfigService],
       useFactory: bullFactory,
     }),
-    BullModule.registerQueue({ name: QueueEnum.crawlAsus }, { name: QueueEnum.crawlSamsung }, { name: QueueEnum.crawlLg }),
+    BullModule.registerQueue(
+      { name: QueueEnum.crawlAsus },
+      { name: QueueEnum.crawlSamsung },
+      { name: QueueEnum.crawlLg },
+      { name: QueueEnum.crawlAsusPages },
+      { name: QueueEnum.crawlSamsungPages },
+    ),
   ],
   controllers: [CrawlerController],
-  providers: [CrawlerService, AsusConsumer],
+  providers: [CrawlerService, AsusConsumer, AsusProducer, AsusPagesConsumer, SamsungConsumer, SamsungProducer, SamsungPagesConsumer],
 })
 export class CrawlerModule {}

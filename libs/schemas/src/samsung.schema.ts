@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { AsusDto } from '@app/dto/product.dto';
+import { ProductDto } from '@app/dto/product.dto';
 
-export type AsusDocument = AsusModel & Document;
+export type SamsungDocument = SamsungModel & Document;
 
 @Schema({ collection: 'asus', timestamps: true })
-export class AsusModel implements AsusDto {
+export class SamsungModel implements ProductDto {
   @Prop({ index: true, type: String, required: true })
   productId: string;
   @Prop()
@@ -19,4 +19,4 @@ export class AsusModel implements AsusDto {
   specs: string;
 }
 
-export const AsusSchema = SchemaFactory.createForClass(AsusModel);
+export const SamsungSchema = SchemaFactory.createForClass(SamsungModel);

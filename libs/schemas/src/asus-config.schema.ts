@@ -1,18 +1,18 @@
-import {Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
-import {UtilsInterface} from "@app/interfaces/utils.interface";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { ConfigDto } from '@app/dto/config.dto';
 
-export type AsusConfigDocument = AsusConfigModel & Document
+export type AsusConfigDocument = AsusConfigModel & Document;
 
-@Schema()
-export class AsusConfigModel {
-    @Prop()
-    url: string
+@Schema({ collection: 'asusConfig', timestamps: true })
+export class AsusConfigModel implements ConfigDto {
+  @Prop()
+  url: string;
 
-    @Prop()
-    xml: string[]
+  @Prop()
+  xml: string[];
 
-    @Prop()
-    utils?: UtilsInterface
+  @Prop({ type: Object })
+  utils?: object;
 }
 
-export const AsusConfigSchema = SchemaFactory.createForClass(AsusConfigModel)
+export const AsusConfigSchema = SchemaFactory.createForClass(AsusConfigModel);
