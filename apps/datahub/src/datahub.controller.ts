@@ -4,7 +4,7 @@ import {EventPattern, MessagePattern, Payload} from '@nestjs/microservices';
 import { CommandEnum } from '@app/enums';
 import { ConfigDto } from '@app/dto/config.dto';
 import { AsusDocument } from '@app/schemas';
-import {AsusDto, ProductDto} from '@app/dto/product.dto';
+import {ExtProductDto, ProductDto} from '@app/dto/product.dto';
 
 @Controller()
 export class DatahubController {
@@ -25,13 +25,26 @@ export class DatahubController {
     return this.datahubService.findSamsungConfig();
   }
 
+  @MessagePattern({ cmd: CommandEnum.getLenovoConfig })
+  async getLenovoConfig(): Promise<ConfigDto> {
+    return this.datahubService.findLenovoConfig();
+  }
+
   @EventPattern(CommandEnum.insertAsusProduct)
-  async insertAsusProduct(@Payload() data: AsusDto): Promise<AsusDocument> {
+  async insertAsusProduct(@Payload() data: ExtProductDto): Promise<AsusDocument> {
+    console.log('asus')
     return this.datahubService.upsertAsusProduct(data);
   }
 
   @EventPattern(CommandEnum.insertSamsungProduct)
   async insertSamsungProduct(@Payload() data: ProductDto): Promise<AsusDocument> {
+    console.log('samsung')
     return this.datahubService.upsertSamsungProduct(data);
+  }
+
+  @EventPattern(CommandEnum.insertLenovoProduct)
+  async insertLenovoProduct(@Payload() data: ExtProductDto): Promise<AsusDocument> {
+    console.log('lenovo')
+    return this.datahubService.upsertLenovoProduct(data);
   }
 }

@@ -2,10 +2,10 @@ export class ProductDto {
   productId: string;
   category: string;
   model: string;
-  specs: string;
+  specs: object;
 }
 
-export class AsusDto extends ProductDto {
+export class ExtProductDto extends ProductDto {
   type: string;
   series: string;
 }

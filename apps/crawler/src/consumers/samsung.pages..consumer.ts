@@ -5,8 +5,7 @@ import { LooseObjectInterface } from '@app/interfaces';
 import * as getUuid from 'uuid-by-string';
 import { Logger } from '@nestjs/common';
 import { CrawlerService } from '../crawler.service';
-import { AsusDto } from '@app/dto/product.dto';
-import { filter, findIndex } from 'lodash';
+import { ExtProductDto } from '@app/dto/product.dto';
 
 @Processor(QueueEnum.crawlSamsungPages)
 export class SamsungPagesConsumer {
@@ -21,30 +20,13 @@ export class SamsungPagesConsumer {
       const { page, browser } = await this.crawlerService.getPage();
 
       productData.productId = getUuid(job.data.url, 5);
+
       page.on('response', async (response) => {
         if (response.url().includes(job.data.utils.responseUrlFilter[0]) && response.url().includes(job.data.utils.responseUrlFilter[0])) {
-          const productResponse = JSON.parse(await response.text());
           const modelName = await (
             await page.$$(`${job.data.utils.modelSelectorDOM}[class*=${job.data.utils.modelSelector}]`)
           )[0].evaluate((el) => el.innerText);
 
-          const compareObject = filter(productResponse.sections, (object) => {
-            return object.type.includes(job.data.utils.productDataFilter);
-          });
-          const modelIndex = findIndex(compareObject[0].compareSeries, (object) => {
-            const modelNameTail = modelName.split(' ').pop();
-            return object.text.endsWith(modelNameTail);
-          });
-          compareObject.map((compareDataObject) => {
-            compareDataObject.content.map((content) => {
-              const indexedObject = content.details[modelIndex];
-              const heading = indexedObject.heading.replace(/\W+/g, '');
-              const headingData = indexedObject.content.map((data) => {
-                return data.replace('<span>', '').replace('</span>', '');
-              });
-              productData[heading.toLowerCase()] = headingData.join(', ');
-            });
-          });
           const params = page.url().split('/');
           productData.category = params[5];
           productData.model = modelName;
@@ -54,7 +36,7 @@ export class SamsungPagesConsumer {
       await page.goto(job.data.url);
       await page.click(`${job.data.utils.promoSelectorDOM}[class*=${job.data.utils.promoSelector}]`);
       await browser.close();
-      await this.crawlerService.insertSamsungProduct(productData as AsusDto);
+      await this.crawlerService.insertSamsungProduct(productData as ExtProductDto);
     } catch (error) {
       this.logger.error(error);
       throw error;

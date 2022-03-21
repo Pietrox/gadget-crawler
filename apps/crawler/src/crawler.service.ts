@@ -15,7 +15,10 @@ export class CrawlerService {
     return this.client.emit(CommandEnum.insertAsusProduct, data);
   }
   async insertSamsungProduct(data): Promise<Observable<any>> {
-    return this.client.emit(CommandEnum.insertAsusProduct, data);
+    return this.client.emit(CommandEnum.insertSamsungProduct, data);
+  }
+  async insertLenovoProduct(data): Promise<Observable<any>> {
+    return this.client.emit(CommandEnum.insertLenovoProduct, data);
   }
 
   async getPage() {
@@ -37,6 +40,6 @@ export class CrawlerService {
     });
     await page.setJavaScriptEnabled(true);
     await page.setDefaultNavigationTimeout(0);
-    return {browser, page};
+    return { browser, page };
   }
 }

@@ -3,7 +3,7 @@ import { ProductDto } from '@app/dto/product.dto';
 
 export type SamsungDocument = SamsungModel & Document;
 
-@Schema({ collection: 'asus', timestamps: true })
+@Schema({ collection: 'samsung', timestamps: true })
 export class SamsungModel implements ProductDto {
   @Prop({ index: true, type: String, required: true })
   productId: string;
@@ -15,8 +15,8 @@ export class SamsungModel implements ProductDto {
   series: string;
   @Prop()
   model: string;
-  @Prop()
-  specs: string;
+  @Prop({ type: Object })
+  specs: object;
 }
 
 export const SamsungSchema = SchemaFactory.createForClass(SamsungModel);

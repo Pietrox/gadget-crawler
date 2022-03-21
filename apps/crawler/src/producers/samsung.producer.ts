@@ -20,7 +20,10 @@ export class SamsungProducer {
     const links = filter(xmlData.urlset.url, (object) => {
       return object.loc.includes('/buy/');
     });
-    dto.url = links[0].loc;
-    await this.crawlSamsungPages.add({ ...dto }, bullOptionsFactory());
+    links.map(async (techLink) => {
+      dto.url = techLink.loc;
+      await this.crawlSamsungPages.add({ ...dto }, bullOptionsFactory());
+    });
   }
+
 }

@@ -29,7 +29,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       inject: [ConfigService],
       useFactory: bullFactory,
     }),
-    BullModule.registerQueue({ name: QueueEnum.crawlAsus }, { name: QueueEnum.crawlSamsung }, { name: QueueEnum.crawlLg }),
+    BullModule.registerQueue({ name: QueueEnum.crawlAsus }, { name: QueueEnum.crawlSamsung }, { name: QueueEnum.crawlLenovo }),
   ],
   controllers: [ApiController],
   providers: [ApiService],

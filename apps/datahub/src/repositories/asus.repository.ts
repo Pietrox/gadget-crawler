@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { AsusDocument } from '@app/schemas';
 import { Model } from 'mongoose';
-import { AsusDto } from '@app/dto/product.dto';
+import { ExtProductDto } from '@app/dto/product.dto';
 
 @Injectable()
 export class AsusRepository {
@@ -12,7 +12,7 @@ export class AsusRepository {
     return this.asusModel.find();
   }
 
-  async upsertByProductId(dto: AsusDto): Promise<AsusDocument> {
+  async upsertByProductId(dto: ExtProductDto): Promise<AsusDocument> {
     return this.asusModel.findOneAndUpdate({ productId: dto.productId }, { ...dto }, { upsert: true });
   }
 }

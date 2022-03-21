@@ -14,6 +14,9 @@ import { AsusPagesConsumer } from './consumers/asus.pages..consumer';
 import { SamsungConsumer } from './consumers/samsung.consumer';
 import { SamsungPagesConsumer } from './consumers/samsung.pages..consumer';
 import { SamsungProducer } from './producers/samsung.producer';
+import { LenovoConsumer } from './consumers/lenovo.consumer';
+import { LenovoProducer } from './producers/lenovo.producer';
+import { LenovoPagesConsumer } from './consumers/lenovo.pages..consumer';
 
 @Module({
   imports: [
@@ -40,12 +43,24 @@ import { SamsungProducer } from './producers/samsung.producer';
     BullModule.registerQueue(
       { name: QueueEnum.crawlAsus },
       { name: QueueEnum.crawlSamsung },
-      { name: QueueEnum.crawlLg },
+      { name: QueueEnum.crawlLenovo },
       { name: QueueEnum.crawlAsusPages },
       { name: QueueEnum.crawlSamsungPages },
+      { name: QueueEnum.crawlLenovoPages },
     ),
   ],
   controllers: [CrawlerController],
-  providers: [CrawlerService, AsusConsumer, AsusProducer, AsusPagesConsumer, SamsungConsumer, SamsungProducer, SamsungPagesConsumer],
+  providers: [
+    CrawlerService,
+    AsusConsumer,
+    AsusProducer,
+    AsusPagesConsumer,
+    SamsungConsumer,
+    SamsungProducer,
+    SamsungPagesConsumer,
+    LenovoConsumer,
+    LenovoProducer,
+    LenovoPagesConsumer,
+  ],
 })
 export class CrawlerModule {}

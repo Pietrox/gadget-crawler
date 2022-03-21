@@ -10,19 +10,19 @@ import { filter } from 'lodash';
 import { bullOptionsFactory } from '@app/factories';
 
 @Injectable()
-export class AsusProducer {
-  constructor(@InjectQueue(QueueEnum.crawlAsusPages) private crawlAsusPages: Queue, private httpService: HttpService) {}
+export class LenovoProducer {
+  constructor(@InjectQueue(QueueEnum.crawlLenovoPages) private crawlLenovoPages: Queue, private httpService: HttpService) {}
 
   async produceSingleTasks(dto: ConfigDto): Promise<void> {
     const xml = await firstValueFrom(await this.httpService.get(dto.xml[0]));
     const parser = new XMLParser();
     const xmlData = parser.parse(xml.data);
     const links = filter(xmlData.urlset.url, (object) => {
-      return object.loc.includes('techspec');
+      return object.loc.includes('/p/');
     });
     links.map(async (link) => {
       dto.url = link.loc;
-      await this.crawlAsusPages.add({ ...dto }, bullOptionsFactory());
+      await this.crawlLenovoPages.add({ ...dto }, bullOptionsFactory());
     });
   }
 }

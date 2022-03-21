@@ -10,7 +10,10 @@ import { ConfigRepository } from './repositories/config.repository';
 import { AsusRepository } from './repositories/asus.repository';
 import { SamsungConfigSchema } from '@app/schemas/samsung-config.schema';
 import { SamsungSchema } from '@app/schemas/samsung.schema';
-import {SamsungRepository} from "./repositories/samsung.repository";
+import { SamsungRepository } from './repositories/samsung.repository';
+import { LenovoRepository } from './repositories/lenovo.repository';
+import { LenovoConfigSchema } from '@app/schemas/lenovo-config.schema';
+import { LenovoSchema } from '@app/schemas/lenovo.schema';
 
 @Module({
   imports: [
@@ -25,6 +28,8 @@ import {SamsungRepository} from "./repositories/samsung.repository";
       { name: 'asus', schema: AsusSchema },
       { name: 'samsungConfig', schema: SamsungConfigSchema },
       { name: 'samsung', schema: SamsungSchema },
+      { name: 'lenovoConfig', schema: LenovoConfigSchema },
+      { name: 'lenovo', schema: LenovoSchema },
     ]),
     ClientsModule.registerAsync([
       {
@@ -36,6 +41,6 @@ import {SamsungRepository} from "./repositories/samsung.repository";
     ]),
   ],
   controllers: [DatahubController],
-  providers: [DatahubService, ConfigRepository, AsusRepository, SamsungRepository],
+  providers: [DatahubService, ConfigRepository, AsusRepository, SamsungRepository, LenovoRepository],
 })
 export class DatahubModule {}

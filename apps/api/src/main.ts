@@ -10,6 +10,7 @@ async function bootstrap() {
   const app = await NestFactory.create(ApiModule);
   const configService = await app.get<ConfigService>(ConfigService);
 
+
   await app.connectMicroservice<MicroserviceOptions>(redisFactory(configService) as MicroserviceOptions);
   const swaggerOptions = new DocumentBuilder()
     .setTitle('API Documentation')

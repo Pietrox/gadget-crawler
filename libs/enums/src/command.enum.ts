@@ -5,6 +5,7 @@ export enum CommandEnum {
   insertAsusProduct = 'insertAsusProduct',
   getSamsungConfig = 'getSamsungConfig',
   insertSamsungProduct = 'insertSamsungProduct',
-  getLgConfig = 'getLgConfig',
-  insertLgConfig = 'insertLgConfig',
+  getLenovoConfig = 'getLenovoConfig',
+  insertLenovoConfig = 'insertLenovoConfig',
+  insertLenovoProduct = 'insertLenovoProduct',
 }
